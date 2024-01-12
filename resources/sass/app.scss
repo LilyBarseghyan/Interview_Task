@@ -1,0 +1,41 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+html, body {
+    height: 100%;
+}
+
+.nav-parent {
+    padding: .25rem .5rem;
+    font-weight: 600;
+    color: var(--bs-emphasis-color);
+    background-color: transparent;
+}
+
+.nav-parent:hover,
+.nav-parent:focus {
+    color: rgba(var(--bs-emphasis-color-rgb), .85);
+    background-color: var(--bs-tertiary-bg);
+}
+
+.nav-parent[aria-expanded="true"] {
+    .bi-caret-right-fill::before {
+        color: rgba(var(--bs-emphasis-color-rgb), .85);
+        content: "\f229";
+    }
+}
+
+#sidebar {
+    width: 15%;
+
+    a {
+        text-decoration: none;
+    }
+}
