@@ -22,6 +22,10 @@ class BookController extends Controller
             $orderByColumn = 'name';
         }
 
+        if (!in_array($orderByDirection, ['asc', 'desc'])) {
+            $orderByDirection = 'asc';
+        }
+
         $qb = Book::orderBy($orderByColumn, $orderByDirection);
 
         if ($request->has('search')) {
