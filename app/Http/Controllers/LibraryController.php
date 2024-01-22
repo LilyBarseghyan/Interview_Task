@@ -25,7 +25,7 @@ class LibraryController extends Controller
             $orderByColumn = 'name';
         }
 
-        $qb = Book::orderBy($orderByColumn, $orderByDirection);
+        $qb = Library::orderBy($orderByColumn, $orderByDirection);
 
         if ($request->has('search')) {
             $qb->where('name', 'LIKE', '%' . strval($request->input('search')) . '%');
@@ -55,7 +55,7 @@ class LibraryController extends Controller
         $library = new Library();
         $library->name = $request->input('name');
 
-        if ($request->input('image')) {
+        if ($request->has('image')) {
             $fileName = time() . '.' . $request->file('image')->extension();
             $request->file('image')->move(public_path('uploads'), $fileName);
             $library->image = $fileName;
@@ -65,7 +65,7 @@ class LibraryController extends Controller
 
         $library->books()->attach($request->input('attachments'));
 
-        return redirect('/library');
+        return redirect()->route('library.index');
     }
 
     /**
@@ -97,7 +97,7 @@ class LibraryController extends Controller
         $library = Library::findOrFail($id);
         $library->name = $request->input('name');
 
-        if ($request->input('image')) {
+        if ($request->has('image')) {
             if ($library->image && File::exists(public_path('uploads/') . $library->image)) {
                 File::delete(public_path('uploads/') . $library->image);
             }
@@ -111,7 +111,7 @@ class LibraryController extends Controller
 
         $library->books()->sync($request->input('attachments'));
 
-        return redirect('/library');
+        return redirect()->route('library.index');
     }
 
     /**
@@ -124,6 +124,6 @@ class LibraryController extends Controller
 
         $library->delete();
 
-        return redirect('/library');
+        return redirect()->route('library.index');
     }
 }

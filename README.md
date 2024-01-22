@@ -5,7 +5,7 @@ If you have PostgreSQL installed, please create database with name 'laravel'. Or
 
 ```docker run -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=laravel -p 5432:5432 -d postgres```
 
-Next please make create '.env' having '.env.example' as template. Make sure you have correct configuration of database related variables.
+Next please create '.env' having '.env.example' as template. Make sure you have correct configuration of database related variables.
 
 To start application please run following commands:
 ```

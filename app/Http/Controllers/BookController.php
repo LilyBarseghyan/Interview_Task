@@ -65,7 +65,7 @@ class BookController extends Controller
 
         $book->save();
 
-        return redirect('/book');
+        return redirect()->route('book.index');
     }
 
     /**
@@ -96,7 +96,7 @@ class BookController extends Controller
         $book->title = $request->input('title');
         $book->content = $request->input('content');
 
-        if ($request->input('image')) {
+        if ($request->has('image')) {
             if ($book->image && File::exists(public_path('uploads/') . $book->image)) {
                 File::delete(public_path('uploads/') . $book->image);
             }
@@ -108,7 +108,7 @@ class BookController extends Controller
 
         $book->save();
 
-        return redirect('/book');
+        return redirect()->route('book.index');
     }
 
     /**
@@ -122,6 +122,6 @@ class BookController extends Controller
         }
         $book->delete();
 
-        return redirect('/book');
+        return redirect()->route('book.index');
     }
 }
